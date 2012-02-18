@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'npnc.sms',
     'npnc.gifts',
+	'npnc.accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -147,3 +148,6 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
