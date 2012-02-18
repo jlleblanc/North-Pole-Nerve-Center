@@ -7,7 +7,11 @@ from twilio import twiml
 def recv_sms(request):
     if request.POST:
         sms_body = request.POST.get('Body', '')
-        action, arguments = sms_body.split(' ', 1)
+        if " " in sms_body:
+            action, arguments = sms_body.split(' ', 1)
+        else:
+            action = sms_body
+            arguments = ""
         handler = sms_handles.get(action, DEFAULT_HANDLER)
         twiml_response = twiml.Response()
         twiml_response.sms(handler(arguments))
