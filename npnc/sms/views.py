@@ -61,6 +61,10 @@ def handle_help(user, rest):
 
 
 def handle_buy(user, rest):
+    pieces = rest.split();
+    item_number = pieces.pop()
+    item = WishItem.objects.get(id=item_number)
+    item.mark_purchased(user)
     return "you bought %s" % rest
 
 
