@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from twilio import twiml
 
 
@@ -32,10 +33,17 @@ def handle_list(rest):
     return "listing stuff..."
 
 
+def handle_who(rest):
+    users = User.objects.all()
+    names = [user.username for user in users]
+    return "\n".join(names)
+
+
 sms_handles = {
     'buy': handle_buy,
     'list': handle_list,
-    'help': handle_help
+    'help': handle_help,
+    'who': handle_who
 }
 DEFAULT_HANDLER = handle_help
 
