@@ -38,6 +38,8 @@ This will produce a list of items:
 
 ### To buy a wisher an item
 
+Will buy Joe item #1 (Star Wars Legos)
+
 	buy Joe 1
 
 ### To list people
