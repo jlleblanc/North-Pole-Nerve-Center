@@ -71,7 +71,7 @@ def handle_list(user, rest):
         items = WishItem.objects.wanted_by_user(found)
         if not items:
             return "{0} hasn't wished for anything!".format(searching_for)
-        return "\n".join(["{0}) {1}".format(i, item.item_name) for i, item in enumerate(items, 1)])
+        return "\n".join(["{0}) {1}".format(item.id, item.item_name) for item in items])
 
     except User.DoesNotExist:
         return "Nobody with that name here. Run `who` to see all users"
