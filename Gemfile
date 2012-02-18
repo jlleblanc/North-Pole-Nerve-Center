@@ -30,6 +30,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'twilio-ruby', '~> 3.5.1'
+
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
