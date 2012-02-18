@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1></h1>
+
+<div id="help">
+
+<h2>Request An Invite</h2>
+    <p>Don't have an account yet? That's because our service is so hot and trendy
+    that we can't let <strong>everyone</strong> in!</p>
+    <p>Don't worry! If you're as cool as you think you are, send us this personal information
+    and we'll have one of our unpaid interns add you!</p>
+    <form class="well">
+        <input type="text" class="span3" placeholder="Email Address…">
+        <input type="text" class="span3" placeholder="Phone #…">
+        <p />
+        <button type="submit" class="btn btn-primary">Request An Invite!</button>
+    </form>
+
+<h2 id="protocol">How To Use North Pole Nerve Center</h2>
+
+<p>Incoming SMSes will need to be in the following format:</p>
+
+<h3 id="to_want_an_item">To want an item:</h3>
+
+<pre><code>want Star Wars Legos
+</code></pre>
+
+<h3 id="to_list_a_wisher8217s_items">To list a wisher&#8217;s items:</h3>
+
+<pre><code>list Joe
+</code></pre>
+
+<p>This will produce a list of items:</p>
+
+<pre><code>1) Star Wars Legos
+2) Node.js book
+3) Coffee - (bought by Dan)
+</code></pre>
+
+<h3 id="to_buy_a_wisher_an_item">To buy a wisher an item</h3>
+
+<p>Will buy Joe item #1 (Star Wars Legos)</p>
+
+<pre><code>buy Joe 1
+</code></pre>
+
+<h3 id="to_list_people">To list people</h3>
+
+<pre><code>who
+</code></pre>
+
+<p>Will produce a list of people:</p>
+
+<pre><code>Joe
+Dan
+Sam
+</code></pre>
+
+<h3 id="to_get_help">To get help</h3>
+
+<pre><code>help
+</code></pre>
+
+<p>Will send back a list of commands:</p>
+
+<pre><code>want - list an item you want
+list [name] - list the items for a person
+buy [name] [item number] - mark an item for a person as bought
+who - list all of the people
+</code></pre>
+</div>
+{% endblock %}

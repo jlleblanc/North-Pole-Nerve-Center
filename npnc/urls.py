@@ -1,9 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-
-def print_stuff(r):
-    r.body
+from npnc.webui.views import homepage
 
 
 # Uncomment the next two lines to enable the admin:
@@ -12,7 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'npnc.views.home', name='home'),
+    #url(r'^$', 'npnc.webui.views.homepage', name='home'),
+    url(r'^$', homepage, name='home'),
     # url(r'^npnc/', include('npnc.foo.urls')),
     url(r'^sms/', include('npnc.sms.urls')),
 
@@ -21,8 +19,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
-    url('^subscriptions/process', print_stuff),
 )
 
 urlpatterns += staticfiles_urlpatterns()
