@@ -1,5 +1,15 @@
 # North Pole Nerve Center
 
-* Make Christmas lists
-* Mark gifts as bought
-* Do everything via SMS / Email
+## Plan
+
+* Sign up for an account
+	* Email
+	* Name
+	* Phone Number
+	* Password
+
+* Add items to the list
+
+* List other people's items, with purchase status
+
+* Mark items as purchased
