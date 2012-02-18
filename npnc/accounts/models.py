@@ -13,8 +13,13 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username + "'s profile."
 
+
 def create_user_profile(sender, instance, created, **kwargs):
+    print instance
     if created:
-        UserProfile.objects.create(user=instance)
+        try:
+            instance.get_profile()
+        except UserProfile.DoesNotExist:
+            UserProfile.objects.create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)
