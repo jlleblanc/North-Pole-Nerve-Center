@@ -15,11 +15,7 @@ class UserProfile(models.Model):
 
 
 def create_user_profile(sender, instance, created, **kwargs):
-    print instance
     if created:
-        try:
-            instance.get_profile()
-        except UserProfile.DoesNotExist:
-            UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)

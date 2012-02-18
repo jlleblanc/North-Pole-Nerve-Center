@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from accounts.models import UserProfile
+from npnc.accounts.models import UserProfile
 from twilio import twiml
 from gifts.models import WishItem
 import re
