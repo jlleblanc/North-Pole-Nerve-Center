@@ -16,7 +16,10 @@ def user_from_twilio_request(request):
     if not match:
         raise Exception("Phone number aint right")
     usnumber = "-".join(match.groups())
-    return UserProfile.objects.get(phone_number=usnumber).user
+    try:
+        return UserProfile.objects.get(phone_number=usnumber).user
+    except UserProfile.DoesNotExist:
+        return None
 
 
 def responds_sms(view):
@@ -34,7 +37,7 @@ def recv_sms(request):
     if request.POST:
         this_user = user_from_twilio_request(request)
         if not this_user:
-            return "Sorry, but I don't know who you are!"
+            return "Sorry, but I don't think I know who you are!"
         sms_body = request.POST.get('Body', '')
         if " " in sms_body:
             action, arguments = sms_body.split(' ', 1)
