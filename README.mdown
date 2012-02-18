@@ -16,3 +16,48 @@
 * List other people's items, with purchase status
 
 * Mark items as purchased
+
+
+## Protocol
+
+Incoming SMSes will need to be in the following format:
+
+### To want an item:
+
+	want Star Wars Legos
+
+### To list a wisher's items:
+
+	list Joe
+
+This will produce a list of items:
+
+	1) Star Wars Legos
+	2) Node.js book
+	3) Coffee - (bought by Dan)
+
+### To buy a wisher an item
+
+	buy Joe 1
+
+### To list people
+
+	who
+
+Will produce a list of people:
+
+	Joe
+	Dan
+	Sam
+
+### To get help
+
+	help
+
+Will send back a list of commands:
+
+	want - list an item you want
+	list [name] - list the items for a person
+	buy [name] [item number] - mark an item for a person as bought
+	who - list all of the people
+
