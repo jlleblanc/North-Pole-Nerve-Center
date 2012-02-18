@@ -24,7 +24,7 @@ def responds_sms(view):
         response = view(request)
         twiml_response = twiml.Response()
         twiml_response.sms(response)
-        return HttpResponse(str(twiml_response))
+        return HttpResponse(str(twiml_response), content_type="text/xml")
     inner.csrf_exempt = True
     return inner
 
@@ -41,14 +41,20 @@ def recv_sms(request):
         else:
             action = sms_body
             arguments = ""
-        handler = sms_handles.get(action, DEFAULT_HANDLER)
+        handler = sms_handles.get(action.lower(), DEFAULT_HANDLER)
         return handler(this_user, arguments)
     else:
         return HttpResponse("gotta post, man")
 
 
 def handle_help(user, rest):
-    return "Commands are: buy <name> <number>, list <name>, who"
+    return "\n".join([
+        "Commands are",
+        "want - list an item you want",
+        "list [name] - list the items for a person",
+        "buy [name] [item number] - mark an item for a person as bought",
+        "who - list all of the people",
+    ])
 
 
 def handle_buy(user, rest):
@@ -56,7 +62,14 @@ def handle_buy(user, rest):
 
 
 def handle_list(user, rest):
-    return "listing stuff..."
+    searching_for = rest.strip()
+    try:
+        found = User.objects.get(username=searching_for)
+        items = WishItem.objects.wanted_by_user(found)
+        return "\n".join(["{0}) {1}".format(i, item.item_name) for i, item in enumerate(items)])
+
+    except User.DoesNotExist:
+        return "Nobody with that name here. Run `who` to see all users"
 
 
 def handle_who(user, rest):
