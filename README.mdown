@@ -9,6 +9,9 @@
 	* Password
 
 * Add items to the list
+	* Name
+	* Wisher ID
+	* Buyer ID
 
 * List other people's items, with purchase status
 
