@@ -7,10 +7,10 @@ from twilio import twiml
 def recv_sms(request):
     if request.POST:
         sms_body = request.POST.get('Body', '')
-        words = sms_body.split()
-        response = sms_handles.get(words[0], handle_help)(words[1:])
+        action, arguments = sms_body.split(' ', 1)
+        handler = sms_handles.get(action, DEFAULT_HANDLER)
         twiml_response = twiml.Response()
-        twiml_response.sms(response)
+        twiml_response.sms(handler(arguments))
         return HttpResponse(str(twiml_response))
     else:
         return HttpResponse("gotta post, man")
