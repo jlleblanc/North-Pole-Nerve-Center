@@ -55,7 +55,7 @@ def handle_help(user, rest):
         "Commands are",
         "want - list an item you want",
         "list [name] - list the items for a person",
-        "buy [name] [item number] - mark an item for a person as bought",
+        "buy [name] [item] - mark an item as bought",
         "who - list all of the people",
     ])
 
